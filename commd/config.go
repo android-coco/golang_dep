@@ -19,6 +19,6 @@ func InitConfig() (Err module.Error) {
 		fmt.Printf("Init Config Load failed. err:%v\n", err)
 		return module.Error{ErrCode: ErrorSystem, ErrMsg: err}
 	}
-	fmt.Printf("init config succes.")
+	fmt.Println("init config succes.")
 	return module.Error{ErrCode: SuccessCode, ErrMsg: nil}
 }

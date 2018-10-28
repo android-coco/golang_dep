@@ -1,6 +1,8 @@
 package commd
 
-import "dep/module"
+import (
+	"dep/module"
+)
 
 // server
 var ServerAddr string

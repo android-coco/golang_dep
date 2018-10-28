@@ -19,8 +19,8 @@ func Run() module.Error {
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
 	router.Use(cors.New(initCorsConf()))
-	api.InitRoutes(router)
-	commd.Logger.Infof("init server success. on psot: %s", commd.ServerAddr)
+	go api.InitRoutes(router)
+	commd.Logger.Info("server init  success. on post: "+commd.ServerAddr)
 	err := router.Run(commd.ServerAddr)
 	if err != nil {
 		commd.Logger.Errorf("fail to start web service: %s", err)

@@ -4,23 +4,26 @@ exe_path="$( cd "$( dirname "$0"  )" && pwd  )"
 DEP_HOME=${exe_path}/../
 DEP_SBIN=${DEP_HOME}/bin/
 DEP_PID=${DEP_HOME}data/dep.pid
+DEP=${DEP_SBIN}dep
 
 
 start()
 {
-    if [ -f ${DEP_PID} ]
-    then
+    if [ -f ${DEP_PID} ];then
         pid=`cat ${DEP_PID}`
         process_num=`ps -ef | grep -w ${pid} | grep -v "grep" | grep "dep" | wc -l`
-        if [ ${process_num} -ge 1 ];
-        then
+        if [ ${process_num} -ge 1 ];then
             echo "service already running. pid=$pid"
             return
         fi  
     fi
-    cd ${DEP_SBIN}
-    nohup ./dep &> ../logs/dep.log 2>> ../logs/dep_except.log &
-    echo "dep start"
+    if [ ! -x ${DEP} ];then
+       echo "dep file does not exist,run the command make."
+    else
+       cd ${DEP_SBIN}
+       nohup ./dep &> ../logs/dep.log 2>> ../logs/dep_except.log &
+       echo "dep start is runing. pid=$pid"
+    fi
 }
 
 
