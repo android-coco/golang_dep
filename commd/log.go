@@ -3,6 +3,7 @@ package commd
 import (
 	"github.com/cihub/seelog"
 	"dep/module"
+	"fmt"
 )
 
 var Logger seelog.LoggerInterface
@@ -14,11 +15,10 @@ func InitLog() module.Error {
 	Logger, err = seelog.LoggerFromConfigAsFile(logConfigFile)
 	seelog.ReplaceLogger(Logger)
 	if err != nil {
+		fmt.Errorf("init log error:%v", err)
 		return module.Error{ErrCode: ErrorSystem, ErrMsg: err}
-	} else {
-		return module.Error{ErrCode: SuccesCode, ErrMsg: nil}
 	}
+	Logger.Infof("init log success. ")
+	return module.Error{ErrCode: SuccessCode, ErrMsg: nil}
+
 }
-
-
-

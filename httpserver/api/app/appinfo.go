@@ -18,7 +18,7 @@ func Info(c *gin.Context) {
 	db.Find(&apps)
 
 	c.JSON(http.StatusOK, module.ApiResp{
-		ErrNo:  commd.SuccesCode,
+		ErrNo:  commd.SuccessCode,
 		ErrMsg: "",
 		Data:   apps,
 	})

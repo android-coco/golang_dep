@@ -1,7 +1,7 @@
 package commd
 
 const (
-	SuccesCode  = 0
+	SuccessCode = 0
 	ErrorSystem = 1
 
 

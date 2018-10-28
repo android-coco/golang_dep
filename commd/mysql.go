@@ -27,13 +27,13 @@ func InitDb() module.Error {
 		// gorm 会自己 ping 一次 DB
 		//Logger.Error("sql.Ping command failed. err:", err,
 		//	" data_source_name: ", data_source_name)
-		fmt.Errorf("sql.Open command failed. err: %v data_source_name %s ", err, dataSourceName)
-
+		Logger.Errorf("sql.Open command failed. err: %v data_source_name %s ", err, dataSourceName)
 		return module.Error{ErrCode: ErrorMysqlCommandPing, ErrMsg: err}
 	}
 
 	gormDefaultDB.LogMode(true).SetLogger(logger{})
-	return module.Error{ErrCode: SuccesCode, ErrMsg: nil}
+	Logger.Info("init db success.")
+	return module.Error{ErrCode: SuccessCode, ErrMsg: nil}
 
 }
 

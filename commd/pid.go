@@ -12,11 +12,11 @@ func InitPid() module.Error {
 	var f *os.File
 	f, err = os.OpenFile(pidFilePath, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
 	if err != nil {
-		//Logger.Error("open pid file failed")
+		Logger.Error("open pid file failed")
 		return module.Error{ErrCode: ErrorSystem, ErrMsg: err}
 	}
 	defer f.Close()
 	f.WriteString(fmt.Sprintf("%d", os.Getpid()))
-	//Logger.Info("pid file init success")
-	return module.Error{ErrCode: SuccesCode, ErrMsg: nil}
+	Logger.Info("pid file init success.")
+	return module.Error{ErrCode: SuccessCode, ErrMsg: nil}
 }

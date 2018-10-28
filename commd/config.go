@@ -5,6 +5,7 @@ import (
 	"path/filepath"
 	"os"
 	"dep/module"
+	"fmt"
 )
 
 var Config *ini.File
@@ -15,8 +16,9 @@ func InitConfig() (Err module.Error) {
 	Path, _ = filepath.Abs(filepath.Dir(os.Args[0]))
 	Config, err = ini.Load(Path + "/../config/config.ini")
 	if err != nil {
-		Logger.Error("Init Config Load failed. err:%v\n", err)
+		fmt.Printf("Init Config Load failed. err:%v\n", err)
 		return module.Error{ErrCode: ErrorSystem, ErrMsg: err}
 	}
-	return module.Error{ErrCode: SuccesCode, ErrMsg: nil}
+	fmt.Printf("init config succes.")
+	return module.Error{ErrCode: SuccessCode, ErrMsg: nil}
 }

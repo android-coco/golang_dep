@@ -6,9 +6,10 @@ import (
 	"dep/httpserver/api"
 	"github.com/gin-contrib/cors"
 	"strings"
+	"dep/module"
 )
 
-func Run() {
+func Run() module.Error {
 	isDebugMode := commd.Config.Section("gin").Key("debug_mode").MustBool(true)
 	if !isDebugMode {
 		gin.SetMode(gin.ReleaseMode)
@@ -19,11 +20,13 @@ func Run() {
 	router.Use(gin.Recovery())
 	router.Use(cors.New(initCorsConf()))
 	api.InitRoutes(router)
-
+	commd.Logger.Infof("init server success. on psot: %s", commd.ServerAddr)
 	err := router.Run(commd.ServerAddr)
 	if err != nil {
-		commd.Logger.Errorf("fail to start web service: %s", err.Error())
+		commd.Logger.Errorf("fail to start web service: %s", err)
+		return module.Error{ErrCode: commd.ErrorSystem, ErrMsg: err}
 	}
+	return module.Error{ErrCode: commd.SuccessCode, ErrMsg: nil}
 }
 
 func initCorsConf() cors.Config {

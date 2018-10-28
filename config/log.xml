@@ -8,19 +8,19 @@ minlevel 设置日志最低级别; maxlevel 设置日志的最高级别
     <outputs formatid="all">
 
         <filter levels="debug">
-            <rollingfile type="date" filename="logs/debug.log" datepattern="02.01.2006" maxrolls="7"/>
+            <rollingfile type="date" filename="../logs/debug.log" datepattern="02.01.2006" maxrolls="7"/>
         </filter>
 
         <filter levels="info">
-        <rollingfile type="date" filename="logs/access.log" datepattern="02.01.2006" maxrolls="7"/>
+        <rollingfile type="date" filename="../logs/access.log" datepattern="02.01.2006" maxrolls="7"/>
         </filter>
 
         <filter levels="error">
-            <rollingfile type="date" filename="logs/error.log" datepattern="02.01.2006" maxrolls="7"/>
+            <rollingfile type="date" filename="../logs/error.log" datepattern="02.01.2006" maxrolls="7"/>
         </filter>
 
         <filter levels="critical">
-            <rollingfile type="date" filename="logs/critical.log" datepattern="02.01.2006" maxrolls="7"/>
+            <rollingfile type="date" filename="../logs/critical.log" datepattern="02.01.2006" maxrolls="7"/>
         </filter>
 
     </outputs>
